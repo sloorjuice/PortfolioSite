@@ -14,7 +14,7 @@ export default function Home() {
           src="/me.jpg" 
           alt="Profile photo"
           fill
-          className="rounded-full object-cover border-4 border-gray-200 shadow-lg"
+          className="rounded-full object-cover border-4 border-gray-200 shadow-lg transform rotate-0"
         />
       </div>
 
