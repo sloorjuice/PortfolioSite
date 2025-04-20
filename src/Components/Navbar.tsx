@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="bg-gray-900 text-white py-3 text-center">
+    <nav style={{ backgroundColor: "var(--navbar-color)" }} className="text-white py-3 text-center">
         <div className="flex justify-center items-center">
             <ul className="flex space-x-6"> 
             <li>
