@@ -44,7 +44,7 @@ export default function PortfolioPage() {
   return (
     <main className="min-h-screen px-6 py-12 text-white">
       <section className="mb-12">
-        <h2 className="text-3xl font-semibold mb-6">Personal Projects</h2>
+        <h2 className="text-3xl font-semibold mb-6 border-b-2 border-gray-500 pb-2">Personal Projects</h2>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4">
           {personalProjects.map((project) => (
             <ProjectCard
@@ -60,7 +60,7 @@ export default function PortfolioPage() {
       </section>
 
       <section>
-        <h2 className="text-3xl font-semibold mb-6">Client Work</h2>
+        <h2 className="text-3xl font-semibold mb-6 border-b-2 border-gray-500 pb-2">Client Work</h2>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4">
           {clientWork.map((work) => (
             <ProjectCard
