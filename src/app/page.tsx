@@ -44,7 +44,7 @@ export default function Home() {
       </div>
       <div className="flex gap-4 mt-4">
         <Link href="mailto:antant8085@gmail.com" className="text-blue-500 hover:underline">
-          antant8085@gmail.com
+          contact@sloor.dev
         </Link>
         <Link href="tel:+18144312013" className="text-blue-500 hover:underline">
           (814) 431-2013
