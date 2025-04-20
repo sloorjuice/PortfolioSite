@@ -26,7 +26,7 @@ export default function Home() {
       <p className="mt-6 max-w-xl text-center text-gray-300">
         I&apos;m a full-stack developer passionate about building quality websites.
         I am here to create the best possible product for you!
-        I use TypeScript, React, Node.js, Tailwind CSS, and Netlify to create responsive and beautiful websites for myself, my users, and my clients.
+        I use TypeScript, React, Node.js, Tailwind CSS, and Netlify to create responsive and beautiful websites for clients, my users, and even myself.
         I&apos;m currently working on a pretty awesome project, &quot;OfTheDay.World&quot;. Check it out on the Portfolio page!
       </p>
 
