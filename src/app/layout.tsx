@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/Components/Navbar";
+import StarryLayout from "@/Components/StarryLayout";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -28,8 +29,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <StarryLayout>
         <Navbar />
         {children}
+        </StarryLayout>
       </body>
     </html>
   );
