@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FaGithub, FaLinkedin, FaLink } from "react-icons/fa"; // Import icons
+import { FaGithub, FaLinkedin } from "react-icons/fa"; // Removed FaLink
 import { SiLinktree } from "react-icons/si";
 
 export default function Home() {
@@ -24,10 +24,10 @@ export default function Home() {
 
       {/* Bio */}
       <p className="mt-6 max-w-xl text-center text-gray-300">
-        I'm a full-stack developer passionate about building quality websites.
-        I use modern technologies to create responsive and user-friendly web applications.
-        I  use with TypeScript, React, Node.js, Tailwind CSS and Netlify to create Responsive and Beautiful websites for both myself, my users, and my clients.
-        I'm currently working on a pretty awesome project, "OfTheDay.World". Check it out on the Portfolio page!
+        I&apos;m a full-stack developer passionate about building quality websites.
+        I am here to create the best possible product for you!
+        I use TypeScript, React, Node.js, Tailwind CSS, and Netlify to create responsive and beautiful websites for myself, my users, and my clients.
+        I&apos;m currently working on a pretty awesome project, &quot;OfTheDay.World&quot;. Check it out on the Portfolio page!
       </p>
 
       {/* Social Links */}
