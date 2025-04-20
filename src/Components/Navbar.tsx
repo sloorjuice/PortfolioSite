@@ -6,7 +6,7 @@ export default function Navbar() {
         <div className="flex justify-center items-center">
             <ul className="flex space-x-6"> 
             <li>
-                <Link href="/menu" className="hover:text-yellow-300">
+                <Link href="/Portfolio" className="hover:text-yellow-300">
                 Portfolio
                 </Link>
             </li>
@@ -16,7 +16,7 @@ export default function Navbar() {
                 </Link>
             </li>
             <li>
-                <Link href="/menu" className="hover:text-yellow-300">
+                <Link href="/About" className="hover:text-yellow-300">
                 About
                 </Link>
             </li>
