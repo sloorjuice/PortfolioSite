@@ -23,9 +23,10 @@ export default function Home() {
         <p className="text-lg text-white mt-2">Web Developer · Skater · Creative</p>
 
         <p className="mt-6 max-w-xl text-center text-gray-300">
-          I&apos;m a full-stack developer passionate about building quality websites.
+          Welcome to my little corner of the internet!
+          I&apos;m a full-stack developer passionate about building quality websites, like the one you&apos;re currently viewing now.
           I am here to create the best possible product for you!
-          I use TypeScript, React, Node.js, Tailwind CSS, and Netlify to create responsive and beautiful websites for clients, my users, and even myself.
+          I use TypeScript, React, Node.js, Tailwind CSS, and Netlify to create responsive and beautiful websites for clients, users, and even myself.
           I&apos;m currently working on a pretty awesome project, &quot;OfTheDay.World&quot;. Check it out on the Portfolio page!
         </p>
 
