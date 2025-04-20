@@ -1,3 +1,5 @@
+"use client";
+
 export default function Footer() {
     return (
       <footer style={{ backgroundColor: "var(--brand-color)" }} className="py-3 text-center text-white">
