@@ -7,7 +7,7 @@ import { SiLinktree } from "react-icons/si";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white px-6 py-12 flex flex-col items-center justify-start pt-22">
+    <main className="min-h-screen bg-black text-white px-6 py-12 flex flex-col items-center justify-start pt-8">
       {/* Profile Image */}
       <div className="relative w-40 h-40 mb-6">
         <Image
