@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/Components/Navbar";
-import Footer from "@/Components/Footer";
+import Footer from "@/Components/footer"; // Corrected to match the file name
 import StarryLayout from "@/Components/StarryLayout";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
