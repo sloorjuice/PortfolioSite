@@ -7,7 +7,7 @@ export default function Navbar() {
   const pathname = usePathname(); // Get the current route
 
   return (
-    <nav style={{ backgroundColor: "var(--navbar-color)" }} className="text-white py-3 text-center">
+    <nav style={{ backgroundColor: "var(--brand-color)" }} className="text-white py-4 text-center">
       <div className="flex justify-center items-center">
         <ul className="flex space-x-6">
           <li>

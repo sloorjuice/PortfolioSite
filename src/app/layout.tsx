@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/Components/Navbar";
+import Footer from "@/Components/Footer";
 import StarryLayout from "@/Components/StarryLayout";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -33,6 +34,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         </StarryLayout>
+        <Footer />
       </body>
     </html>
   );
