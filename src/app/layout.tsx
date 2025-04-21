@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Script from "next/script"; // Import the Script component
 import Navbar from "@/Components/Navbar";
-import Footer from "@/Components/footer"; // Corrected to match the file name
+import Footer from "@/Components/footer";
 import StarryLayout from "@/Components/StarryLayout";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -31,11 +32,23 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <StarryLayout>
-        <Navbar />
-        {children}
+          <Navbar />
+          {children}
         </StarryLayout>
         <Footer />
-        <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="sloorjuice" data-description="Support me on Buy me a coffee!" data-message="Support Me!" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+        {/* Add the Buy Me a Coffee widget script asynchronously */}
+        <Script
+          src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+          data-name="BMC-Widget"
+          data-id="sloorjuice"
+          data-description="Support me on Buy me a coffee!"
+          data-message="Support Me!"
+          data-color="#5F7FFF"
+          data-position="Right"
+          data-x_margin="18"
+          data-y_margin="18"
+          strategy="lazyOnload" // Load the script lazily
+        />
       </body>
     </html>
   );
