@@ -178,7 +178,7 @@ export default function AboutPage() {
       </div>
 
       {/* Divider Line */}
-      <div className="bg-gray-400 h-px w-full my-6 md:my-0 md:w-px md:h-auto md:self-stretch md:mx-6" />
+      <div className="bg-gray-400 h-px w-full my-6 md:my-0 md:w-px md:h-auto md:self-stretch md:mx-6 mt-0 md:mt-12" />
 
       {/* Right Section */}
       <div className="w-full md:w-1/2 md:pl-6">
