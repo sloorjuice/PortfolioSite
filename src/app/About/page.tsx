@@ -38,7 +38,7 @@ export default function AboutPage() {
   };
 
   return (
-    <main className="min-h-screen text-white px-6 flex flex-col md:flex-row items-stretch justify-center relative overflow-hidden">
+    <main className="min-h-screen text-white px-6 flex flex-col md:flex-row items-stretch justify-center relative overflow-hidden pb-0 md:pb-12">
       {/* Left Section */}
       <div className="w-full md:w-1/2 md:pr-6 flex flex-col items-center mb-12 md:mb-0 pt-12">
         <div className="relative z-10 flex flex-col items-center">
@@ -159,7 +159,7 @@ export default function AboutPage() {
             <li>TypeScript, JavaScript, React, and Next.js</li>
             <li>Tailwind CSS, Firebase, AWS</li>
             <li>Responsive, accessible web applications</li>
-            <li>Using API&apos;s and Deploying with Netlify</li>
+            <li>Using APIs and Deploying with Netlify</li>
             <li>Hosting and Managing Multiple Websites</li>
             <li>Git + GitHub for version control</li>
             <li>React Native and Mobile Development</li>
