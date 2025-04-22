@@ -72,7 +72,7 @@ export default function AboutPage() {
         <div className="relative z-10 flex flex-col items-center">
         {/* Carousel */}
         <div
-          className="relative w-80 h-80 overflow-hidden mb-6"
+          className="relative w-80 h-80 overflow-hidden mb-4"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onMouseEnter={() => setIsHovered(true)}
@@ -115,9 +115,8 @@ export default function AboutPage() {
         </button>
         </div>
 
-
           {/* Navigation Dots */}
-          <div className="flex justify-center mt-4 gap-2">
+          <div className="flex justify-center mt-0 gap-2">
             {galleryImages.map((_, index) => (
               <button
                 key={index}
