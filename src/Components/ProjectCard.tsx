@@ -2,6 +2,7 @@
 
 import React from "react";
 import { FaGithub } from "react-icons/fa";
+import Image from "next/image";
 
 interface ProjectCardProps {
   title: string;
@@ -17,14 +18,24 @@ export default function ProjectCard({ title, description, image, projectLink, gi
       onClick={() => window.open(projectLink, "_blank")}
       className="cursor-pointer bg-gray-800 rounded-lg shadow-[0_4px_6px_rgba(255,255,255,0.2)] overflow-hidden max-w-sm mx-auto hover:scale-105 transition-transform relative"
     >
-      <img
+      <Image
         src={image}
         alt={title}
-        className="w-full h-48 object-contain bg-black"
+        width={400} // Adjust width as needed
+        height={300} // Adjust height as needed
+        className="object-cover rounded-lg"
       />
       <div className="p-4">
         <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
         <p className="text-gray-400">{description}</p>
+        <a
+          href={projectLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 hover:text-gray-300"
+        >
+          View Project
+        </a>
         {githubLink && (
           <a
             href={githubLink}

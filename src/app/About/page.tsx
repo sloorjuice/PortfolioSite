@@ -159,7 +159,7 @@ export default function AboutPage() {
             <li>TypeScript, JavaScript, React, and Next.js</li>
             <li>Tailwind CSS, Firebase, AWS</li>
             <li>Responsive, accessible web applications</li>
-            <li>Using API's and Deploying with Netlify</li>
+            <li>Using API&apos;s and Deploying with Netlify</li>
             <li>Hosting and Managing Multiple Websites</li>
             <li>Git + GitHub for version control</li>
             <li>React Native and Mobile Development</li>
