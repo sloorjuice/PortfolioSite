@@ -5,7 +5,7 @@ import Link from "next/link";
 import ProjectCard from "@/Components/ProjectCard";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiLinktree } from "react-icons/si";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const featuredProject = {
   title: "Of The Day!",
@@ -17,15 +17,18 @@ const featuredProject = {
 };
 
 const galleryImages = [
-    "/me.jpg",
-    "/me1.jpg",
-    "/me2.jpeg",
-    "/me3.jpeg",
-    "/me4.jpeg",
+  "/me.jpg",
+  "/me1.jpg",
+  "/me2.jpeg",
+  "/me3.jpeg",
+  "/me4.jpeg",
 ];
 
 export default function AboutPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
 
   const handleNext = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % galleryImages.length);
@@ -37,35 +40,96 @@ export default function AboutPage() {
     );
   };
 
+  // Auto-scroll effect
+  useEffect(() => {
+    if (isHovered) return; // Pause if hovered
+  
+    const interval = setInterval(() => {
+      handleNext();
+    }, 3000);
+  
+    return () => clearInterval(interval);
+  }, [isHovered]); // Rerun effect when hover state changes
+
+  // Handle swipe on mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.changedTouches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    if (!touchStartX.current || !touchEndX.current) return;
+
+    const diff = touchStartX.current - touchEndX.current;
+    if (diff > 50) handleNext(); // swipe left
+    else if (diff < -50) handlePrev(); // swipe right
+  };
+
   return (
     <main className="min-h-screen text-white px-6 flex flex-col md:flex-row items-stretch justify-center relative overflow-hidden pb-0 md:pb-12">
       {/* Left Section */}
       <div className="w-full md:w-1/2 md:pr-6 flex flex-col items-center mb-12 md:mb-0 pt-12">
         <div className="relative z-10 flex flex-col items-center">
-          {/* Gallery */}
-          <div className="relative w-80 h-80 mb-6">
-            <Image
-              src={galleryImages[currentImageIndex]}
-              alt={`Gallery image ${currentImageIndex + 1}`}
-              fill
-              className="object-cover border-4 border-gray-200 shadow-lg"
-            />
-            {/* Left Button */}
-            <button
-              onClick={handlePrev}
-              className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-700 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-600"
+        {/* Carousel */}
+        <div
+          className="relative w-80 h-80 overflow-hidden mb-6"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{
+            transform: `translateX(-${currentImageIndex * 320}px)`,
+          }}
+        >
+          {galleryImages.map((image, index) => (
+            <div
+              key={index}
+              className="w-80 h-80 flex-shrink-0 flex items-center justify-center"
             >
-              &lt;
-            </button>
-            {/* Right Button */}
-            <button
-              onClick={handleNext}
-              className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-700 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-600"
-            >
-              &gt;
-            </button>
+              <Image
+                src={image}
+                alt={`Gallery image ${index + 1}`}
+                width={320}
+                height={320}
+                className="rounded-lg object-cover border-4 border-gray-200 shadow-lg"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Nav Buttons */}
+        <button
+          onClick={handlePrev}
+          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-700 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-600"
+        >
+          &lt;
+        </button>
+        <button
+          onClick={handleNext}
+          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-700 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-600"
+        >
+          &gt;
+        </button>
+        </div>
+
+
+          {/* Navigation Dots */}
+          <div className="flex justify-center mt-4 gap-2">
+            {galleryImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`w-3 h-3 rounded-full ${
+                  currentImageIndex === index ? "bg-white scale-125" : "bg-gray-400"
+                } transition-all`}
+              />
+            ))}
           </div>
 
+          {/* Name and Bio Section */}
           <h1 className="text-4xl font-bold mt-6">Anthony Reynolds</h1>
           <p className="text-lg text-white mt-2">
             Web Developer · Skater · Creative
@@ -78,7 +142,7 @@ export default function AboutPage() {
             I love Skating, Coding, Gaming and many other things.
           </p>
 
-          {/* Hobbies Section */}
+          {/* Favorites Section */}
           <section className="mt-12 w-full max-w-4xl mb-12">
             <h2 className="text-3xl font-bold mb-4">⭐Favorites</h2>
             <ul className="list-inside text-gray-300">
@@ -91,40 +155,23 @@ export default function AboutPage() {
             </ul>
           </section>
 
+          {/* Contact Links */}
           <div className="mt-8 flex gap-6">
-            <Link
-              href="https://github.com/sloorjuice"
-              target="_blank"
-              className="text-blue-500 hover:text-gray-300"
-            >
+            <Link href="https://github.com/sloorjuice" target="_blank" className="text-blue-500 hover:text-gray-300">
               <FaGithub size={30} />
             </Link>
-            <Link
-              href="https://linktr.ee/sloorjuice"
-              target="_blank"
-              className="text-blue-500 hover:text-gray-300"
-            >
+            <Link href="https://linktr.ee/sloorjuice" target="_blank" className="text-blue-500 hover:text-gray-300">
               <SiLinktree size={30} />
             </Link>
-            <Link
-              href="https://www.linkedin.com/in/anthony-reynolds-b90811355/"
-              target="_blank"
-              className="text-blue-500 hover:text-gray-300"
-            >
+            <Link href="https://www.linkedin.com/in/anthony-reynolds-b90811355/" target="_blank" className="text-blue-500 hover:text-gray-300">
               <FaLinkedin size={30} />
             </Link>
           </div>
           <div className="flex gap-4 mt-4">
-            <Link
-              href="mailto:contact@sloor.dev"
-              className="text-blue-500 hover:underline"
-            >
+            <Link href="mailto:contact@sloor.dev" className="text-blue-500 hover:underline">
               contact@sloor.dev
             </Link>
-            <Link
-              href="tel:+18144312013"
-              className="text-blue-500 hover:underline"
-            >
+            <Link href="tel:+18144312013" className="text-blue-500 hover:underline">
               (814) 431-2013
             </Link>
           </div>
@@ -136,11 +183,8 @@ export default function AboutPage() {
 
       {/* Right Section */}
       <div className="w-full md:w-1/2 md:pl-6">
-        {/* Featured Projects Section */}
         <section className="mt-12 w-full max-w-4xl flex flex-col items-center">
-          <h2 className="text-3xl font-bold mb-4 text-center">
-            Featured Project
-          </h2>
+          <h2 className="text-3xl font-bold mb-4 text-center">Featured Project</h2>
           <div className="flex justify-center">
             <ProjectCard
               title={featuredProject.title}
@@ -152,7 +196,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Skills Section */}
+        {/* Skills */}
         <section className="mt-12 w-full max-w-4xl">
           <h2 className="text-3xl font-bold mb-4">Skills</h2>
           <ul className="list-disc list-inside text-gray-300">
@@ -166,14 +210,14 @@ export default function AboutPage() {
           </ul>
         </section>
 
-        {/* Hobbies Section */}
+        {/* Hobbies */}
         <section className="mt-12 w-full max-w-4xl mb-12">
           <h2 className="text-3xl font-bold mb-4">Hobbies</h2>
           <ul className="list-inside text-gray-300">
             <li>🛹&ensp;Skateboarding and exploring new spots</li>
             <li>🌳&ensp;Photography and Nature</li>
             <li>🕹️&ensp;Gaming, Movies, TV, Anime, Etc</li>
-            <li>💻&ensp;Programming and Creating </li>
+            <li>💻&ensp;Programming and Creating</li>
             <li>🖊️&ensp;Drawing, Coloring, Writing and Art</li>
           </ul>
         </section>
