@@ -17,10 +17,11 @@ const featuredProject = {
 };
 
 const galleryImages = [
-  "/me.jpg",
-  "/me1.jpg",
-  "/me2.jpeg",
-  "/me3.jpeg",
+    "/me.jpg",
+    "/me1.jpg",
+    "/me2.jpeg",
+    "/me3.jpeg",
+    "/me4.jpeg",
 ];
 
 export default function AboutPage() {
