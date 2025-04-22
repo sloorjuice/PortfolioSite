@@ -84,6 +84,8 @@ export default function AboutPage() {
             <ul className="list-inside text-gray-300">
               <li>🎥&ensp;<span className="font-bold">Movie:</span> Mid90s</li>
               <li>📺&ensp;<span className="font-bold">TV Show:</span> Breaking Bad</li>
+              <li>🛋️&ensp;<span className="font-bold">Cartoon:</span> Adventure Time</li>
+              <li>🌀&ensp;<span className="font-bold">Anime:</span> One Punch Man</li>
               <li>🎮&ensp;<span className="font-bold">Game:</span> Terraria</li>
               <li>📚&ensp;<span className="font-bold">Book:</span> Tokyo Ghoul</li>
             </ul>
@@ -154,11 +156,13 @@ export default function AboutPage() {
         <section className="mt-12 w-full max-w-4xl">
           <h2 className="text-3xl font-bold mb-4">Skills</h2>
           <ul className="list-disc list-inside text-gray-300">
-            <li>TypeScript, JavaScript, React, and Node.js</li>
-            <li>Tailwind CSS, HTML5, and CSS3</li>
+            <li>TypeScript, JavaScript, React, and Next.js</li>
+            <li>Tailwind CSS, Firebase, AWS</li>
             <li>Responsive, accessible web applications</li>
+            <li>Using API's and Deploying with Netlify</li>
+            <li>Hosting and Managing Multiple Websites</li>
             <li>Git + GitHub for version control</li>
-            <li>Deploying with Netlify and Vercel</li>
+            <li>React Native and Mobile Development</li>
           </ul>
         </section>
 
@@ -168,8 +172,9 @@ export default function AboutPage() {
           <ul className="list-inside text-gray-300">
             <li>🛹&ensp;Skateboarding and exploring new spots</li>
             <li>🌳&ensp;Photography and Nature</li>
-            <li>🕹️&ensp;Gaming and staying current with the scene</li>
-            <li>💻&ensp;Learning new dev tools and leveling up</li>
+            <li>🕹️&ensp;Gaming, Movies, TV, Anime, Etc</li>
+            <li>💻&ensp;Programming and Creating </li>
+            <li>🖊️&ensp;Drawing, Coloring, Writing and Art</li>
           </ul>
         </section>
       </div>
