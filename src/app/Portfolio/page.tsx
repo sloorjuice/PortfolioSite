@@ -37,7 +37,7 @@ export default function PortfolioPage() {
       title: "Example Local Website",
       description: "A simple example website made for a local business. The website is a simple landing page that allows the business to showcase their services and contact information, along with another page for the menu. This website is only 2-3 hours of work.",
       image: "/client1.jpg",
-      projectLink: "https://example.com/client1",
+      projectLink: "https://funexamplewebsite.netlify.app/",
     },
   ];
 
