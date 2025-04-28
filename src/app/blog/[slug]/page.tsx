@@ -20,7 +20,7 @@ interface Params {
 }
 
 interface PageProps {
-  params: Params;
+  params: { slug: string };
 }
 
 export default async function PostPage({ params }: PageProps) {
