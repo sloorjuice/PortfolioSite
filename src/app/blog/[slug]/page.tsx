@@ -15,12 +15,23 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
-  if (!params || typeof params.slug !== 'string') {
+interface PostParams {
+  slug: string;
+}
+
+export default async function PostPage({ 
+  params 
+}: { 
+  params: PostParams | Promise<PostParams>
+}) {
+  // Resolve params if it's a Promise
+  const resolvedParams = params instanceof Promise ? await params : params;
+  
+  if (!resolvedParams || typeof resolvedParams.slug !== 'string') {
     notFound();
   }
 
-  const filePath = path.join(process.cwd(), 'posts', `${params.slug}.md`);
+  const filePath = path.join(process.cwd(), 'posts', `${resolvedParams.slug}.md`);
 
   let fileContents: string;
   try {
