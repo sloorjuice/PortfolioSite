@@ -15,18 +15,21 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-  const filePath = path.join(process.cwd(), 'posts', `${slug}.md`);
+interface Params {
+  slug: string;
+}
 
-  let fileContents: string | undefined;
-  try {
-    fileContents = await fs.readFile(filePath, 'utf8');
-  } catch {
+export default async function PostPage({ params }: { params: Params }) {
+  if (!params || typeof params.slug !== 'string') {
     notFound();
   }
 
-  if (!fileContents) {
+  const filePath = path.join(process.cwd(), 'posts', `${params.slug}.md`);
+
+  let fileContents: string;
+  try {
+    fileContents = await fs.readFile(filePath, 'utf8');
+  } catch {
     notFound();
   }
 
