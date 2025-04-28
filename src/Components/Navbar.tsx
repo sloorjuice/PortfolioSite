@@ -12,7 +12,7 @@ export default function Navbar() {
         {/* BLOG button absolutely positioned to the left */}
         <div className="absolute left-4">
           <Link
-            href="/Blog"
+            href="/blog"
             className="font-bold hover:text-yellow-300 text-lg"
           >
             BLOG
