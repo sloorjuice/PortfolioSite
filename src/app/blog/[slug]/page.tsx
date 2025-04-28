@@ -11,7 +11,7 @@ interface PostPageProps {
   };
 }
 
-export default async function PostPage({ params }: PostPageProps) {
+export default async function PostPage({ params }: { params: { slug: string } }) {
   const filePath = path.join(process.cwd(), 'posts', `${params.slug}.md`);
   const fileContents = await fs.readFile(filePath, 'utf8');
   const { data, content } = matter(fileContents);
