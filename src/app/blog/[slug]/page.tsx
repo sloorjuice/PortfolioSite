@@ -5,6 +5,13 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+
 export async function generateStaticParams() {
   const postsDir = path.join(process.cwd(), "posts");
   const filenames = await fs.readdir(postsDir);
@@ -14,7 +21,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
+export default async function PostPage({ params }: PageProps) {
   const filePath = path.join(process.cwd(), "posts", `${params.slug}.md`);
   const fileContents = await fs.readFile(filePath, "utf8");
 
