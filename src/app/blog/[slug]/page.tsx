@@ -6,13 +6,6 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { notFound } from 'next/navigation';
 
-// Correct typing for props
-interface PostPageProps {
-  params: {
-    slug: string;
-  };
-}
-
 export async function generateStaticParams() {
   const postsDir = path.join(process.cwd(), 'posts');
   const filenames = await fs.readdir(postsDir);
@@ -22,8 +15,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function PostPage({ params }: PostPageProps) {
-  const slug = params.slug;
+export default async function PostPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const filePath = path.join(process.cwd(), 'posts', `${slug}.md`);
 
   let fileContents: string | undefined;
@@ -33,7 +26,6 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound();
   }
 
-  // Add a fallback in case 'fileContents' is undefined
   if (!fileContents) {
     notFound();
   }
