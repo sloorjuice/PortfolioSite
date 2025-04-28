@@ -4,12 +4,7 @@ import matter from 'gray-matter';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import { notFound } from 'next/navigation'; // Needed for handling missing posts
-
-interface PostFrontMatter {
-  title: string;
-  date: string;
-}
+import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   const postsDir = path.join(process.cwd(), 'posts');
@@ -20,20 +15,18 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function PostPage({ params }: any) {
+  const slug = params.slug;
   const filePath = path.join(process.cwd(), 'posts', `${slug}.md`);
 
   let fileContents: string;
   try {
     fileContents = await fs.readFile(filePath, 'utf8');
   } catch {
-    notFound(); // If file not found, return 404 page
+    notFound();
   }
 
-  const parsedMatter = matter(fileContents);
-  const data = parsedMatter.data as PostFrontMatter;
-  const content = parsedMatter.content;
+  const { data, content } = matter(fileContents);
 
   return (
     <div className="max-w-3xl mx-auto py-8 px-4">
