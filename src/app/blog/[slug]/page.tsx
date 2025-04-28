@@ -15,10 +15,6 @@ export async function generateStaticParams() {
   }));
 }
 
-interface Params {
-  slug?: string; // Make slug optional
-}
-
 interface PageProps {
   params: { slug: string };
 }
