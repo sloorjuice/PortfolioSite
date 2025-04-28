@@ -16,10 +16,14 @@ export async function generateStaticParams() {
 }
 
 interface Params {
-  slug: string;
+  slug?: string; // Make slug optional
 }
 
-export default async function PostPage({ params }: { params: Params }) {
+interface PageProps {
+  params: Params;
+}
+
+export default async function PostPage({ params }: PageProps) {
   if (!params || typeof params.slug !== 'string') {
     notFound();
   }
