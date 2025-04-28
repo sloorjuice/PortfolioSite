@@ -5,12 +5,6 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 
-interface PostPageProps {
-  params: {
-    slug: string;
-  };
-}
-
 export default async function PostPage({ params }: { params: { slug: string } }) {
   const filePath = path.join(process.cwd(), 'posts', `${params.slug}.md`);
   const fileContents = await fs.readFile(filePath, 'utf8');
