@@ -6,6 +6,13 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { notFound } from 'next/navigation';
 
+// Correct typing for props
+interface PostPageProps {
+  params: {
+    slug: string;
+  };
+}
+
 export async function generateStaticParams() {
   const postsDir = path.join(process.cwd(), 'posts');
   const filenames = await fs.readdir(postsDir);
@@ -15,14 +22,19 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function PostPage({ params }: any) {
+export default async function PostPage({ params }: PostPageProps) {
   const slug = params.slug;
   const filePath = path.join(process.cwd(), 'posts', `${slug}.md`);
 
-  let fileContents: string;
+  let fileContents: string | undefined;
   try {
     fileContents = await fs.readFile(filePath, 'utf8');
   } catch {
+    notFound();
+  }
+
+  // Add a fallback in case 'fileContents' is undefined
+  if (!fileContents) {
     notFound();
   }
 
