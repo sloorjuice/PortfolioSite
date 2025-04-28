@@ -4,11 +4,22 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-  const pathname = usePathname(); // Get the current route
+  const pathname = usePathname();
 
   return (
-    <nav style={{ backgroundColor: "var(--brand-color)" }} className="text-white py-4 text-center">
-      <div className="flex justify-center items-center">
+    <nav style={{ backgroundColor: "var(--brand-color)" }} className="text-white py-4 relative">
+      <div className="flex justify-center items-center relative">
+        {/* BLOG button absolutely positioned to the left */}
+        <div className="absolute left-4">
+          <Link
+            href="/Blog"
+            className="font-bold hover:text-yellow-300 text-lg"
+          >
+            BLOG
+          </Link>
+        </div>
+
+        {/* Centered navigation links */}
         <ul className="flex space-x-6">
           <li>
             <Link
