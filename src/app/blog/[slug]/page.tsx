@@ -15,11 +15,7 @@ export async function generateStaticParams() {
   }));
 }
 
-interface PageProps {
-  params: { slug: string };
-}
-
-export default async function PostPage({ params }: PageProps) {
+export default async function PostPage({ params }: { params: { slug: string } }) {
   if (!params || typeof params.slug !== 'string') {
     notFound();
   }
