@@ -27,7 +27,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
   let fileContents: string;
   try {
     fileContents = await fs.readFile(filePath, 'utf8');
-  } catch (error) {
+  } catch {
     notFound(); // If file not found, return 404 page
   }
 
