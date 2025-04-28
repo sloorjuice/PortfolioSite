@@ -6,23 +6,13 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
 interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
-
-export async function generateStaticParams() {
-  const postsDir = path.join(process.cwd(), "posts");
-  const filenames = await fs.readdir(postsDir);
-
-  return filenames.map((filename) => ({
-    slug: filename.replace(/\.md$/, ""),
-  }));
+  params: Promise<{ slug: string }>;
 }
 
 export default async function PostPage({ params }: PageProps) {
-  const filePath = path.join(process.cwd(), "posts", `${params.slug}.md`);
+  const { slug } = await params; // 👈 AWAIT the params properly
+  
+  const filePath = path.join(process.cwd(), "posts", `${slug}.md`);
   const fileContents = await fs.readFile(filePath, "utf8");
 
   const { data, content } = matter(fileContents);
@@ -48,3 +38,4 @@ export default async function PostPage({ params }: PageProps) {
     </div>
   );
 }
+
