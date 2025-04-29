@@ -12,7 +12,7 @@ export default function Home() {
       <div className="relative z-10 flex flex-col items-center">
         <div className="relative w-40 h-40 mb-6">
           <Image
-            src="images/personal/me.jpg"
+            src="/images/personal/me.jpg" // Note the leading slash
             alt="Profile photo"
             fill
             className="rounded-full object-cover border-4 border-gray-200 shadow-lg"
