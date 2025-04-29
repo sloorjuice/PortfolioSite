@@ -62,9 +62,9 @@ export default function RootLayout({
         <StarryLayout>
           <Navbar />
           {children}
+          <Footer />
+          <BuyMeACoffee />
         </StarryLayout>
-        <Footer />
-        <BuyMeACoffee />
       </body>
     </html>
   );
