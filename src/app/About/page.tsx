@@ -11,7 +11,7 @@ const featuredProject = {
   title: "Of The Day!",
   description:
     "A simple website that beautifully displays Quote of the day, Songs of the day, Games of the day, etc. Built with React, Spotify API, and Rawg API.",
-  image: "/personal1.jpg",
+  image: "/images/portfolio/personal1.jpg",
   projectLink: "https://www.oftheday.world/",
   githubLink: "https://github.com/sloorjuice/oftheday",
 };
