@@ -62,8 +62,8 @@ export default function RootLayout({
         <StarryLayout>
           <Navbar />
           {children}
-          <Footer />
           <BuyMeACoffee />
+          <Footer />
         </StarryLayout>
       </body>
     </html>
