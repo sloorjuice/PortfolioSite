@@ -5,7 +5,7 @@ export default function Footer() {
       <footer 
         style={{ 
           backgroundColor: "var(--brand-color)", 
-          position: "fixed", 
+          position: "sticky", 
           bottom: 0, 
           width: "100%",
           zIndex: 50 // Ensure the footer is always on top

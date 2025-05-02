@@ -56,14 +56,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <StarryLayout>
-          <Navbar />
-          {children}
-          <BuyMeACoffee />
-          <Footer />
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow">{children}</main>
+            <BuyMeACoffee />
+            <Footer />
+          </div>
         </StarryLayout>
       </body>
     </html>

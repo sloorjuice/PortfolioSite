@@ -6,8 +6,7 @@ import { SiLinktree } from "react-icons/si";
 
 export default function Home() {
   return (
-    <main className="min-h-screen text-white px-6 py-12 flex flex-col items-center justify-start pt-8 relative overflow-hidden">
-
+    <main className="flex flex-col items-center justify-start px-6 pt-6 pb-12 text-white flex-grow overflow-y-auto">
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center">
         <div className="relative w-40 h-40 mb-6">
@@ -30,7 +29,7 @@ export default function Home() {
           I&apos;m currently working on a pretty awesome project, &quot;OfTheDay.World&quot;. Check it out on the Portfolio page!
         </p>
 
-        <div className="mt-8 flex gap-6">
+        <div className="mt-4 flex gap-6">
           <Link href="https://github.com/sloorjuice" target="_blank" className="text-blue-500 hover:text-gray-300">
             <FaGithub size={30} />
           </Link>
