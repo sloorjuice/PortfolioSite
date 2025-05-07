@@ -1,10 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import ProjectCard from "@/Components/ProjectCard";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { SiLinktree } from "react-icons/si";
 import { useState, useEffect, useRef } from "react";
 
 const featuredProject = {
@@ -153,27 +150,6 @@ export default function AboutPage() {
               <li>📚&ensp;<span className="font-bold">Book:</span> Tokyo Ghoul</li>
             </ul>
           </section>
-
-          {/* Contact Links */}
-          <div className="mt-8 flex gap-6">
-            <Link href="https://github.com/sloorjuice" target="_blank" className="text-blue-500 hover:text-gray-300">
-              <FaGithub size={30} />
-            </Link>
-            <Link href="https://linktr.ee/sloorjuice" target="_blank" className="text-blue-500 hover:text-gray-300">
-              <SiLinktree size={30} />
-            </Link>
-            <Link href="https://www.linkedin.com/in/anthony-reynolds-b90811355/" target="_blank" className="text-blue-500 hover:text-gray-300">
-              <FaLinkedin size={30} />
-            </Link>
-          </div>
-          <div className="flex gap-4 mt-4">
-            <Link href="mailto:contact@sloor.dev" className="text-blue-500 hover:underline">
-              contact@sloor.dev
-            </Link>
-            <Link href="tel:+18144312013" className="text-blue-500 hover:underline">
-              (814) 431-2013
-            </Link>
-          </div>
         </div>
       </div>
 
