@@ -72,7 +72,7 @@ export default function AboutPage() {
         <div className="relative z-10 flex flex-col items-center">
         {/* Carousel */}
         <div
-          className="relative w-80 h-80 overflow-hidden mb-4"
+          className="relative w-80 h-80 overflow-hidden mb-4 border-4 border-gray-400 rounded-lg shadow-lg"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onMouseEnter={() => setIsHovered(true)}
@@ -94,7 +94,7 @@ export default function AboutPage() {
                 alt={`Gallery image ${index + 1}`}
                 width={320}
                 height={320}
-                className="rounded-lg object-cover border-4 border-gray-200 shadow-lg"
+                className="rounded-lg object-cover shadow-lg"
               />
             </div>
           ))}
