@@ -23,7 +23,7 @@ export default function Footer() {
         </p>
 
         {/* Social Links */}
-        <div className="flex gap-6">
+        <div className="hidden md:flex gap-6">
           <Link
             href="https://github.com/sloorjuice"
             target="_blank"
@@ -48,7 +48,7 @@ export default function Footer() {
         </div>
 
         {/* Contact Links */}
-        <div className="flex gap-4">
+        <div className="hidden md:flex gap-4">
           <Link
             href="mailto:contact@sloor.dev"
             className="text-white hover:text-yellow-400 text-sm underline"
