@@ -1,15 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #e6e6fa;         /* lavender background */
   --foreground: #fff;            /* white text for contrast */
   --brand-color: #633e73;        /* pastel lavender for brand */
+  --font-main: 'Patrick Hand', Arial, Helvetica, sans-serif;
 }
 
 :root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-main);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -23,7 +25,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-main);
 }
 
 .night-sky {
