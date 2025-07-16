@@ -8,13 +8,18 @@ export default function Footer() {
   return (
     <footer
       style={{
-        backgroundColor: "var(--brand-color)",
+        background:
+          "linear-gradient(120deg, rgba(181,126,220,0.65) 60%, rgba(230,230,250,0.35) 100%)",
+        backdropFilter: "blur(18px)",
+        WebkitBackdropFilter: "blur(18px)",
+        border: "1.5px solid rgba(255,255,255,0.18)",
+        boxShadow: "0 8px 32px 0 rgba(140,120,200,0.18)",
         position: "sticky",
         bottom: 0,
         width: "100%",
-        zIndex: 50, // Ensure the footer is always on top
+        zIndex: 50,
       }}
-      className="py-3 text-white"
+      className="py-3 text-white rounded-xl shadow-lg"
     >
       <div className="flex items-center justify-between px-6">
         {/* Copyright */}

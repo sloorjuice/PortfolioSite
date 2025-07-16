@@ -2,15 +2,16 @@
 
 import Image from "next/image";
 import ProjectCard from "@/Components/ProjectCard";
+import FeaturedProjectCard from "@/Components/FeaturedProjectCard";
 import { useState, useEffect, useRef } from "react";
+import { FaSkating } from "react-icons/fa";
 
 const featuredProject = {
-  title: "Of The Day!",
+  title: "iSkate",
   description:
-    "A simple website that beautifully displays Quote of the day, Songs of the day, Games of the day, etc. Built with React, Spotify API, and Rawg API.",
-  image: "/images/portfolio/personal1.jpg",
-  projectLink: "https://www.oftheday.world/",
-  githubLink: "https://github.com/sloorjuice/oftheday",
+    "The All-In-One Skateboarding Companion App. Made by skaters for skaters. Save and view skate spots online using the SkateMap. Check off and keep track of your tricks on your TrickList. Post your best skate clips and pics.",
+  image: "/images/portfolio/iskateicon.png",
+  projectLink: "https://iSkate.app",
 };
 
 const galleryImages = [
@@ -27,174 +28,214 @@ export default function AboutPage() {
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
-  const handleNext = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % galleryImages.length);
-  };
+  const handleNext = () => setCurrentImageIndex(i => (i + 1) % galleryImages.length);
+  const handlePrev = () => setCurrentImageIndex(i => (i === 0 ? galleryImages.length - 1 : i - 1));
 
-  const handlePrev = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? galleryImages.length - 1 : prevIndex - 1
-    );
-  };
-
-  // Auto-scroll effect
   useEffect(() => {
-    if (isHovered) return; // Pause if hovered
-  
-    const interval = setInterval(() => {
-      handleNext();
-    }, 3000);
-  
+    if (isHovered) return;
+    const interval = setInterval(handleNext, 3000);
     return () => clearInterval(interval);
-  }, [isHovered]); // Rerun effect when hover state changes
+  }, [isHovered]);
 
-  // Handle swipe on mobile
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.changedTouches[0].clientX;
-  };
-
+  const handleTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.changedTouches[0].clientX; };
   const handleTouchEnd = (e: React.TouchEvent) => {
     touchEndX.current = e.changedTouches[0].clientX;
     if (!touchStartX.current || !touchEndX.current) return;
-
     const diff = touchStartX.current - touchEndX.current;
-    if (diff > 50) handleNext(); // swipe left
-    else if (diff < -50) handlePrev(); // swipe right
+    if (diff > 50) handleNext();
+    else if (diff < -50) handlePrev();
   };
 
   return (
-    <main className="min-h-screen text-white px-6 flex flex-col md:flex-row items-stretch justify-center relative overflow-hidden pb-0 md:pb-12">
-      {/* Left Section */}
-      <div className="w-full md:w-1/2 md:pr-6 flex flex-col items-center mb-12 md:mb-0 pt-12">
-        <div className="relative z-10 flex flex-col items-center">
-        {/* Carousel */}
+    <main
+      className="min-h-screen text-white px-2 md:px-6 flex flex-col md:flex-row items-stretch justify-center relative overflow-hidden pb-0 md:pb-8"
+      style={{}}
+    >
+      {/* Left */}
+      <div className="w-full md:w-1/2 flex flex-col items-center mb-8 md:mb-0 pt-8 relative z-10">
         <div
-          className="relative w-80 h-80 overflow-hidden mb-4 border-4 border-gray-400 rounded-lg shadow-lg"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-        <div
-          className="flex transition-transform duration-500 ease-in-out"
+          className="rounded-2xl shadow-xl border border-[#334155]/60 p-4 w-full max-w-md flex flex-col items-center backdrop-blur-xl ring-1 ring-white/10"
           style={{
-            transform: `translateX(-${currentImageIndex * 320}px)`,
+            background: "linear-gradient(120deg, rgba(181,126,220,0.65) 60%, rgba(230,230,250,0.35) 100%)",
+            backdropFilter: "blur(18px)",
+            WebkitBackdropFilter: "blur(18px)",
+            border: "1.5px solid rgba(255,255,255,0.18)",
+            boxShadow: "0 8px 32px 0 rgba(140,120,200,0.18)",
           }}
         >
-          {galleryImages.map((image, index) => (
+          {/* Carousel */}
+          <div
+            className="relative w-48 h-48 overflow-hidden mb-4 border-2 border-[#0ea5e9] rounded-xl shadow"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <div
-              key={index}
-              className="w-80 h-80 flex-shrink-0 flex items-center justify-center"
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentImageIndex * 192}px)` }}
             >
-              <Image
-                src={image}
-                alt={`Gallery image ${index + 1}`}
-                width={320}
-                height={320}
-                className="rounded-lg object-cover shadow-lg"
-              />
+              {galleryImages.map((image, idx) => (
+                <div key={idx} className="w-48 h-48 flex-shrink-0 flex items-center justify-center">
+                  <Image
+                    src={image}
+                    alt={`Gallery image ${idx + 1}`}
+                    width={192}
+                    height={192}
+                    className="rounded-lg object-cover shadow"
+                    priority={idx === 0}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-
-        {/* Nav Buttons */}
-        <button
-          onClick={handlePrev}
-          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-700 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-600"
-        >
-          &lt;
-        </button>
-        <button
-          onClick={handleNext}
-          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-700 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-600"
-        >
-          &gt;
-        </button>
-        </div>
-
-          {/* Navigation Dots */}
-          <div className="flex justify-center mt-0 gap-2">
-            {galleryImages.map((_, index) => (
+            <button
+              onClick={handlePrev}
+              className="absolute top-1/2 left-1 -translate-y-1/2 bg-[#0ea5e9] text-white rounded-full w-6 h-6 flex items-center justify-center shadow hover:bg-[#0284c7] transition"
+              aria-label="Previous"
+            >&lt;</button>
+            <button
+              onClick={handleNext}
+              className="absolute top-1/2 right-1 -translate-y-1/2 bg-[#0ea5e9] text-white rounded-full w-6 h-6 flex items-center justify-center shadow hover:bg-[#0284c7] transition"
+              aria-label="Next"
+            >&gt;</button>
+          </div>
+          {/* Dots */}
+          <div className="flex justify-center gap-1 mb-2">
+            {galleryImages.map((_, idx) => (
               <button
-                key={index}
-                onClick={() => setCurrentImageIndex(index)}
-                className={`w-3 h-3 rounded-full ${
-                  currentImageIndex === index ? "bg-white scale-125" : "bg-gray-400"
-                } transition-all`}
+                key={idx}
+                onClick={() => setCurrentImageIndex(idx)}
+                className={`w-2 h-2 rounded-full border border-[#0ea5e9] ${currentImageIndex === idx ? "bg-[#0ea5e9]" : "bg-gray-500"} transition-all`}
+                aria-label={`Go to image ${idx + 1}`}
               />
             ))}
           </div>
-
-          {/* Name and Bio Section */}
-          <h1 className="text-4xl font-bold mt-6">Anthony Reynolds</h1>
-          <p className="text-lg text-white mt-2">
-            Web Developer · Skater · Creative
+          {/* Name and Bio */}
+          <h1 className="text-2xl font-extrabold mt-1 tracking-tight text-[#0ea5e9]">Anthony Reynolds</h1>
+          <p className="text-base text-gray-100 mt-1 font-medium">Full Stack Mobile & Web Developer</p>
+          <p className="text-base text-gray-100 mt-1 font-medium">Skater · Creative</p>
+          <p className="mt-3 max-w-xs text-center text-gray-300 leading-relaxed text-sm">
+            Hi! I&apos;m Anthony Reynolds, 17, Pennsylvania.<br />
+            I&apos;m a hard-working person who loves to learn and improve.<br />
+            I love Skating, Coding, Gaming, and more.
           </p>
-
-          <p className="mt-6 max-w-xl text-center text-gray-300">
-            Hi there! I&apos;m Anthony Reynolds, I&apos;m 17 years old and I live in Pennsylvania.
-            I&apos;m a hard working person and I love to learn new things,
-            I&apos;m constantly working as hard as I can to improve my skills and character.
-            I love Skating, Coding, Gaming and many other things.
-          </p>
-
-          {/* Favorites Section */}
-          <section className="mt-12 w-full max-w-4xl mb-12">
-            <h2 className="text-3xl font-bold mb-4">⭐Favorites</h2>
-            <ul className="list-inside text-gray-300">
-              <li>🎥&ensp;<span className="font-bold">Movie:</span> Mid90s</li>
-              <li>📺&ensp;<span className="font-bold">TV Show:</span> Breaking Bad</li>
-              <li>🛋️&ensp;<span className="font-bold">Cartoon:</span> Adventure Time</li>
-              <li>🌀&ensp;<span className="font-bold">Anime:</span> One Punch Man</li>
-              <li>🎮&ensp;<span className="font-bold">Game:</span> Terraria</li>
-              <li>📚&ensp;<span className="font-bold">Book:</span> Tokyo Ghoul</li>
-            </ul>
+          {/* Favorites */}
+          <section className="mt-6 w-full flex flex-col items-center">
+            <h2 className="text-lg font-bold mb-2 text-[#0ea5e9] text-center">Favorites</h2>
+            <div className="grid grid-cols-2 gap-2 w-full max-w-xs text-xs">
+              <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+                <div className="font-bold text-white">Movie</div>
+                <div className="text-[#0ea5e9] font-semibold">Mid90s</div>
+              </div>
+              <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+                <div className="font-bold text-white">TV Show</div>
+                <div className="text-[#0ea5e9] font-semibold">Breaking Bad</div>
+              </div>
+              <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+                <div className="font-bold text-white">Cartoon</div>
+                <div className="text-[#0ea5e9] font-semibold">Adventure Time</div>
+              </div>
+              <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+                <div className="font-bold text-white">Anime</div>
+                <div className="text-[#0ea5e9] font-semibold">One Punch Man</div>
+              </div>
+              <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+                <div className="font-bold text-white">Game</div>
+                <div className="text-[#0ea5e9] font-semibold">Terraria</div>
+              </div>
+              <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+                <div className="font-bold text-white">Book</div>
+                <div className="text-[#0ea5e9] font-semibold">Tokyo Ghoul</div>
+              </div>
+            </div>
           </section>
         </div>
       </div>
-
-      {/* Divider Line */}
-      <div className="bg-gray-400 h-px w-full my-6 md:my-0 md:w-px md:h-auto md:self-stretch md:mx-6 mt-0 md:mt-12" />
-
-      {/* Right Section */}
-      <div className="w-full md:w-1/2 md:pl-6">
-        <section className="mt-12 w-full max-w-4xl flex flex-col items-center">
-          <h2 className="text-3xl font-bold mb-4 text-center">Featured Project</h2>
-          <div className="flex justify-center">
-            <ProjectCard
-              title={featuredProject.title}
-              description={featuredProject.description}
-              image={featuredProject.image}
-              projectLink={featuredProject.projectLink}
-              githubLink={featuredProject.githubLink}
-            />
+      {/* Divider */}
+      <div className="hidden md:block bg-gradient-to-b from-[#0ea5e9] to-[#1e293b] h-auto w-0.5 mx-4 rounded-full opacity-70" />
+      {/* Right */}
+      <div className="w-full md:w-1/2 flex flex-col items-center pt-8 relative z-10">
+        {/* Featured Project */}
+        <section
+          className="w-full max-w-xl rounded-2xl shadow-xl border border-[#334155]/60 p-2 mb-4 flex flex-col items-center backdrop-blur-xl ring-1 ring-white/10"
+          style={{
+            background: "linear-gradient(120deg, rgba(181,126,220,0.65) 60%, rgba(230,230,250,0.35) 100%)",
+            backdropFilter: "blur(18px)",
+            WebkitBackdropFilter: "blur(18px)",
+            border: "1.5px solid rgba(255,255,255,0.18)",
+            boxShadow: "0 8px 32px 0 rgba(140,120,200,0.18)",
+          }}
+        >
+          <h2 className="text-lg font-bold mb-2 text-[#0ea5e9] text-center">Featured Project</h2>
+          <div className="flex justify-center w-full">
+            <FeaturedProjectCard {...featuredProject} />
           </div>
         </section>
-
         {/* Skills */}
-        <section className="mt-12 w-full max-w-4xl">
-          <h2 className="text-3xl font-bold mb-4">Skills</h2>
-          <ul className="list-disc list-inside text-gray-300">
-            <li>TypeScript, JavaScript, React, and Next.js</li>
-            <li>Tailwind CSS, Firebase, AWS</li>
-            <li>Responsive, accessible web applications</li>
-            <li>Using APIs and Deploying with Netlify</li>
-            <li>Hosting and Managing Multiple Websites</li>
-            <li>Git + GitHub for version control</li>
-            <li>React Native and Mobile Development</li>
-          </ul>
+        <section
+          className="w-full max-w-xl rounded-2xl shadow border border-[#334155]/60 p-4 mb-4 backdrop-blur-xl flex flex-col items-center ring-1 ring-white/10"
+          style={{
+            background: "linear-gradient(120deg, rgba(181,126,220,0.65) 60%, rgba(230,230,250,0.35) 100%)",
+            backdropFilter: "blur(18px)",
+            WebkitBackdropFilter: "blur(18px)",
+            border: "1.5px solid rgba(255,255,255,0.18)",
+            boxShadow: "0 8px 32px 0 rgba(140,120,200,0.18)",
+          }}
+        >
+          <h2 className="text-lg font-bold mb-2 text-[#0ea5e9] text-center">Skills</h2>
+          <div className="grid grid-cols-2 gap-2 w-full text-xs">
+            <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+              <div className="text-white font-semibold">TypeScript, JavaScript, Python</div>
+            </div>
+            <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+              <div className="text-white font-semibold">React, Next.js, Tailwind CSS</div>
+            </div>
+            <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+              <div className="text-white font-semibold">React Native, Expo</div>
+            </div>
+            <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+              <div className="text-white font-semibold">Firebase, AWS</div>
+            </div>
+            <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+              <div className="text-white font-semibold">APIs & Netlify</div>
+            </div>
+            <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+              <div className="text-white font-semibold">Hosting & Sites</div>
+            </div>
+            <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+              <div className="text-white font-semibold">Git + GitHub</div>
+            </div>
+          </div>
         </section>
-
         {/* Hobbies */}
-        <section className="mt-12 w-full max-w-4xl mb-12">
-          <h2 className="text-3xl font-bold mb-4">Hobbies</h2>
-          <ul className="list-inside text-gray-300">
-            <li>🛹&ensp;Skateboarding and exploring new spots</li>
-            <li>🌳&ensp;Photography and Nature</li>
-            <li>🕹️&ensp;Gaming, Movies, TV, Anime, Etc</li>
-            <li>💻&ensp;Programming and Creating</li>
-            <li>🖊️&ensp;Drawing, Coloring, Writing and Art</li>
-          </ul>
+        <section
+          className="w-full max-w-xl rounded-2xl shadow border border-[#334155]/60 p-4 mb-4 backdrop-blur-xl flex flex-col items-center ring-1 ring-white/10"
+          style={{
+            background: "linear-gradient(120deg, rgba(181,126,220,0.65) 60%, rgba(230,230,250,0.35) 100%)",
+            backdropFilter: "blur(18px)",
+            WebkitBackdropFilter: "blur(18px)",
+            border: "1.5px solid rgba(255,255,255,0.18)",
+            boxShadow: "0 8px 32px 0 rgba(140,120,200,0.18)",
+          }}
+        >
+          <h2 className="text-lg font-bold mb-2 text-[#0ea5e9] text-center">Hobbies</h2>
+          <div className="grid grid-cols-2 gap-2 w-full text-xs">
+            <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+              <div className="text-white font-semibold text-center">Skateboarding & exploring</div>
+            </div>
+            <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+              <div className="text-white font-semibold text-center">Photography & Nature</div>
+            </div>
+            <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+              <div className="text-white font-semibold text-center">Gaming, Movies, TV, Anime</div>
+            </div>
+            <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+              <div className="text-white font-semibold text-center">Programming & Creating</div>
+            </div>
+            <div className="flex flex-col items-center bg-white/10 rounded-xl p-2 shadow border border-white/10 transition-all duration-200 hover:bg-white/20 hover:backdrop-blur-lg hover:scale-[1.03]">
+              <div className="text-white font-semibold text-center">Drawing, Writing & Art</div>
+            </div>
+          </div>
         </section>
       </div>
     </main>

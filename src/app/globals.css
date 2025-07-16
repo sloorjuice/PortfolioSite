@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --brand-color: #28506e; 
+  --background: #e6e6fa;         /* lavender background */
+  --foreground: #fff;            /* white text for contrast */
+  --brand-color: #633e73;        /* pastel lavender for brand */
 }
 
 :root {
@@ -15,8 +15,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #b57edc;       /* deeper lavender for dark mode */
+    --foreground: #fff;
   }
 }
 
@@ -28,7 +28,7 @@ body {
 
 .night-sky {
   position: relative;
-  background-color: black; /* Fallback color */
+  background-color: #b57edc; /* Lavender fallback color */
   z-index: -1;
 }
 
