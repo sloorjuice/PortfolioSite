@@ -40,7 +40,7 @@ export default function Home() {
             I&apos;m a full-stack developer and skater always excited to make something.
           </p>
           <p>
-            I&apos;m excited for my future—I'm making a skateboarding-based app that I've been working on for a while now.<br />
+            I&apos;m excited for my future—I&apos;m making a skateboarding-based app that I&apos;ve been working on for a while now.<br />
             The app is currently in beta and you can check it out at{' '}
             <Link href="https://iSkate.app" target="_blank" className="text-purple-200 underline hover:text-purple-100 font-semibold">iSkate.app</Link>{' '}or{' '}
             <Link href="https://DirtyAttic.com" target="_blank" className="text-purple-200 underline hover:text-purple-100 font-semibold">DirtyAttic.com</Link>.

@@ -1,10 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import ProjectCard from "@/Components/ProjectCard";
 import FeaturedProjectCard from "@/Components/FeaturedProjectCard";
 import { useState, useEffect, useRef } from "react";
-import { FaSkating } from "react-icons/fa";
 
 const featuredProject = {
   title: "iSkate",
