@@ -2,15 +2,17 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <nav
-      className="text-white py-4 relative rounded-xl mx-2 mt-4 shadow-lg"
+      className="text-white py-4 relative rounded-xl mx-2 mt-4 shadow-lg z-50"
       style={{
-        background: "linear-gradient(120deg, rgba(181,126,220,0.65) 60%, rgba(230,230,250,0.35) 100%)",
+        background: "linear-gradient(120deg, rgba(181,126,220,0.85) 60%, rgba(230,230,250,0.65) 100%)",
         backdropFilter: "blur(18px)",
         WebkitBackdropFilter: "blur(18px)",
         border: "1.5px solid rgba(255,255,255,0.18)",
@@ -67,58 +69,140 @@ export default function Navbar() {
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
           }
+          .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 38px;
+            height: 38px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 30;
+          }
+          .hamburger-bar {
+            width: 28px;
+            height: 4px;
+            background: #fff;
+            margin: 3px 0;
+            border-radius: 2px;
+            transition: all 0.3s;
+          }
+          @media (min-width: 768px) {
+            .mobile-menu {
+              display: none !important;
+            }
+            .hamburger {
+              display: none !important;
+            }
+          }
         `}
       </style>
-      {/* Mobile: Stack Blog & Dirty Attic on top, nav links on bottom */}
-      <div className="flex flex-col md:flex-row justify-between items-center relative">
-        {/* Top row: Blog & Dirty Attic (mobile: row, desktop: absolute left/right) */}
-        <div className="w-full flex justify-between items-center mb-4 md:mb-0 md:absolute md:inset-x-0 md:top-1">
-          <div className="md:absolute md:left-4">
-            <Link
-              href="/blog"
-              className="font-bold hover:text-yellow-300 text-lg nav-link"
-            >
-              BLOG
-            </Link>
-          </div>
-          <div className="md:absolute md:right-4">
-            <Link
-              href="https://dirtyattic.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-2xl dirty-attic-link"
-            >
-              Dirty Attic
-            </Link>
-          </div>
+      <div className="flex items-center w-full">
+        {/* Blog far left */}
+        <div className="flex-shrink-0">
+          <Link
+            href="/blog"
+            className="font-bold hover:text-yellow-300 text-lg nav-link"
+          >
+            BLOG
+          </Link>
         </div>
-        {/* Bottom row: Main nav links */}
-        <ul className="flex w-full justify-center space-x-6 md:space-x-6 md:static">
-          <li>
-            <Link
-              href="/Portfolio"
-              className={`nav-link hover:text-yellow-300 ${pathname === "/Portfolio" ? "selected" : ""}`}
-            >
-              Portfolio
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/"
-              className={`nav-link hover:text-yellow-300 ${pathname === "/" ? "selected" : ""}`}
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/About"
-              className={`nav-link hover:text-yellow-300 ${pathname === "/About" ? "selected" : ""}`}
-            >
-              About
-            </Link>
-          </li>
-        </ul>
+        {/* Hamburger for mobile */}
+        <button
+          className="hamburger ml-2 md:hidden"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span
+            className="hamburger-bar"
+            style={{
+              transform: menuOpen ? "rotate(45deg) translate(6px, 6px)" : "none",
+            }}
+          />
+          <span
+            className="hamburger-bar"
+            style={{
+              opacity: menuOpen ? 0 : 1,
+            }}
+          />
+          <span
+            className="hamburger-bar"
+            style={{
+              transform: menuOpen ? "rotate(-45deg) translate(7px, -7px)" : "none",
+            }}
+          />
+        </button>
+        {/* Center links */}
+        <div className="flex-1 flex justify-center gap-4">
+          <ul className="hidden md:flex flex-row items-center gap-4 w-full justify-center">
+            <li>
+              <Link
+                href="/Portfolio"
+                className={`nav-link hover:text-yellow-300 ${pathname === "/Portfolio" ? "selected" : ""}`}
+              >
+                Portfolio
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/"
+                className={`nav-link hover:text-yellow-300 ${pathname === "/" ? "selected" : ""}`}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/About"
+                className={`nav-link hover:text-yellow-300 ${pathname === "/About" ? "selected" : ""}`}
+              >
+                About
+              </Link>
+            </li>
+          </ul>
+        </div>
+        {/* Dirty Attic far right */}
+        <div className="flex-shrink-0">
+          <Link
+            href="https://dirtyattic.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-2xl dirty-attic-link"
+          >
+            Dirty Attic
+          </Link>
+        </div>
+      </div>
+      {/* Mobile menu */}
+      <div
+        className={`mobile-menu absolute left-0 top-full w-full bg-gradient-to-br from-purple-400/80 to-purple-100/60 p-6 rounded-xl shadow-xl z-20 ${
+          menuOpen ? "flex flex-col items-center gap-4" : "hidden"
+        }`}
+      >
+        <Link
+          href="/Portfolio"
+          className={`nav-link hover:text-yellow-300 w-full text-center ${pathname === "/Portfolio" ? "selected" : ""}`}
+          onClick={() => setMenuOpen(false)}
+        >
+          Portfolio
+        </Link>
+        <Link
+          href="/"
+          className={`nav-link hover:text-yellow-300 w-full text-center ${pathname === "/" ? "selected" : ""}`}
+          onClick={() => setMenuOpen(false)}
+        >
+          Home
+        </Link>
+        <Link
+          href="/About"
+          className={`nav-link hover:text-yellow-300 w-full text-center ${pathname === "/About" ? "selected" : ""}`}
+          onClick={() => setMenuOpen(false)}
+        >
+          About
+        </Link>
       </div>
     </nav>
   );
