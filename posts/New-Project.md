@@ -1,7 +1,7 @@
 ---
-title: "New Project!"
+title: "2 New Awesome projects"
 date: "2025-08-06"
-description: "Updates and New Projects."
+description: "Talking about the two new projects I'm working on! One anyone can use and one just for skateboarders."
 ---
 
 Hey guys! first off, I've haven't written a blog post in a while, thats because I've been enjoying my summer big time! But theres the question, what have I been up to? Well i definitely haven't been up to nothing. 
