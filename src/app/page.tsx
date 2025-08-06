@@ -15,7 +15,7 @@ export default function Home() {
       <div className="relative z-10 flex flex-col items-center">
         <div className="relative w-40 h-40 mb-6">
           <Image
-            src="/images/personal/me.jpg"
+            src="/images/personal/myself.jpg"
             alt="Profile photo"
             fill
             className="rounded-full object-cover border-4 border-gray-200 shadow-lg"
@@ -24,7 +24,6 @@ export default function Home() {
 
         <h1 className="text-4xl font-bold">Anthony Reynolds</h1>
         <p className="text-lg text-white mt-2">Full Stack Mobile & Web Developer</p>
-        <p className="text-lg text-white mt-2">Skater · Creative</p>
 
         <div
           className="mt-6 max-w-xl text-center space-y-3 rounded-xl p-6 shadow-xl border border-[rgba(255,255,255,0.18)]"
@@ -37,23 +36,26 @@ export default function Home() {
         >
           <p>
             Welcome to my little corner of the internet!<br />
-            I&apos;m a full-stack developer and skater always excited to make something.
+            Here I&apos;m a full-stack developer, outside I&apos;m a Skateboarder
           </p>
           <p>
-            I&apos;m excited for my future—I&apos;m making a skateboarding-based app that I&apos;ve been working on for a while now.<br />
-            The app is currently in beta and you can check it out at{' '}
+            I&apos;m excited about my projects—I&apos;m working on a skateboarding-focused app that I&apos;ve been thinking on for a long time.
+            The app is currently in prototyping and you can check it out at{' '}
             <Link href="https://iSkate.app" target="_blank" className="text-purple-200 underline hover:text-purple-100 font-semibold">iSkate.app</Link>{' '}or{' '}
-            <Link href="https://DirtyAttic.com" target="_blank" className="text-purple-200 underline hover:text-purple-100 font-semibold">DirtyAttic.com</Link>.
+            <Link href="https://DirtyAttic.com" target="_blank" className="text-purple-200 underline hover:text-purple-100 font-semibold">DirtyAttic.com(Coming Soon)</Link>.
           </p>
           <p>
-            <span className="font-semibold text-white">Dirty Attic</span> is my team of passionate Skaters, Artists, and Coders that I work with to create amazing things.
+            In the meanwhile check out other projects in <Link href='/Portfolio' className="text-purple-200 underline hover:text-purple-100 font-semibold">My Portfolio</Link>.
+          </p>
+          <p>
+            <span className="font-semibold text-white">Dirty Attic</span> is a team of passionate Skaters, Artists, and Coders (My Friends lol) that I work with to create amazing things.
           </p>
           <p>
             I use <span className="font-semibold text-white">React Native</span> and <span className="font-semibold text-white">Expo</span> with <span className="font-semibold text-white">TypeScript</span> and <span className="font-semibold text-white">Firebase</span> to create iSkate and other apps.<br />
             I use <span className="font-semibold text-white">React Native</span> and <span className="font-semibold text-white">Next.js</span> with <span className="font-semibold text-white">TypeScript</span>, <span className="font-semibold text-white">Tailwind CSS</span> and <span className="font-semibold text-white">Netlify</span> to create responsive and beautiful websites.
           </p>
           <p>
-            Please check <Link href="https://DirtyAttic.com" target="_blank" className="text-purple-200 underline hover:text-purple-100 font-semibold">DirtyAttic.com</Link>,{' '}
+            Please check <Link href="https://DirtyAttic.com" target="_blank" className="text-purple-200 underline hover:text-purple-100 font-semibold">DirtyAttic.com(Coming Soon)</Link>,{' '}
             <Link href="https://iSkate.app" target="_blank" className="text-purple-200 underline hover:text-purple-100 font-semibold">iSkate.app</Link>, and the rest of this website.<br />
             Feel free to reach out if you have any questions or anything else!
           </p>

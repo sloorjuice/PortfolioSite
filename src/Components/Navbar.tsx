@@ -8,6 +8,10 @@ export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const handleClick = () => {
+    window.alert('Dirty Attic is a Work In Progress!');
+  };
+
   return (
     <nav
       className="text-white py-4 relative rounded-xl mx-2 mt-4 shadow-lg z-50"
@@ -166,14 +170,18 @@ export default function Navbar() {
         </div>
         {/* Dirty Attic far right */}
         <div className="flex-shrink-0">
-          <Link
+          <button onClick={handleClick} className="text-2xl dirty-attic-link">
+            Dirty Attic
+          </button>
+
+          {/*<Link
             href="https://dirtyattic.com"
             target="_blank"
             rel="noopener noreferrer"
             className="text-2xl dirty-attic-link"
           >
             Dirty Attic
-          </Link>
+          </Link>*/}
         </div>
       </div>
       {/* Mobile menu */}
